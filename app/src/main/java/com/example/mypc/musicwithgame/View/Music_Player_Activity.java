@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mypc.musicwithgame.R;
+import com.example.mypc.musicwithgame.Service.Music_Player_Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -128,6 +129,13 @@ public class Music_Player_Activity extends AppCompatActivity {
 
     public void onPlay(View v)
     {
+     //gửi link mp3 sang Service
+        Intent intent=new Intent(this, Music_Player_Service.class);
+        intent.putExtra("mp3",song_res);
+        this.startService(intent);
+
+
+
 
         if(mPlayer==null)
         {
@@ -279,6 +287,8 @@ public class Music_Player_Activity extends AppCompatActivity {
     public void onStop()
     {
         super.onStop();
+        Intent intent=new Intent(this,Music_Player_Service.class);
+        this.stopService(intent);
 
     }
 

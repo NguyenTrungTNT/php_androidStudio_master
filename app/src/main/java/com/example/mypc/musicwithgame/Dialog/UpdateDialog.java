@@ -18,11 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.mypc.musicwithgame.Fragment.AccountFragment;
 import com.example.mypc.musicwithgame.R;
+import com.example.mypc.musicwithgame.View.LoginActivity;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +29,10 @@ import java.util.Map;
  */
 
 public class UpdateDialog extends DialogFragment {
+
+ /*   HttpParse httpParse = new HttpParse();
+    String finalResult ;
+    HashMap<String,String> hashMap = new HashMap<>();*/
     static String name,hero,email,age,hobby,id;
     static String UPDATE_API="http://musicismylife.atspace.cc/update_user_info.php";
     static Button btUpdate,btCancel;
@@ -63,7 +65,7 @@ public class UpdateDialog extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // lấy giá trị tự bundle
-        String data = getArguments().getString("data", "");
+        final String data = getArguments().getString("data", "");
         String data1 = getArguments().getString("data1", "");
         String data2 = getArguments().getString("data2", "");
         String data3 = getArguments().getString("data3", "");
@@ -80,39 +82,31 @@ public class UpdateDialog extends DialogFragment {
         etHero=(EditText)view.findViewById(R.id.etHero);
 
 
-        Intent intent= getActivity().getIntent();
 
         etName.setText(data);
         etEmail.setText(data1);
         etHero.setText(data2);
         etHobby.setText(data3);
         etAge.setText(data4);
-       /* name=intent.getStringExtra("name");
-        email=intent.getStringExtra("email");
-        hero=intent.getStringExtra("hero");
-        hobby=intent.getStringExtra("hobby");
-        age=intent.getStringExtra("age");
 
-        etName.setText(name);
-        etEmail.setText(email);
-        etHero.setText(hero);
-        etAge.setText(age);
-        etHobby.setText(hobby)*/;
 
         btUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                GetDataFromEditText();
 
-                name=etName.getText().toString().trim();
-                email=etEmail.getText().toString().trim();
-                age=etAge.getText().toString().trim();
-                hero=etHero.getText().toString().trim();
-                hobby=etHobby.getText().toString().trim();
+//                name=etName.getText().toString().trim();
+//                email=etEmail.getText().toString().trim();
+//                age=etAge.getText().toString().trim();
+//                hero=etHero.getText().toString().trim();
+//                hobby=etHobby.getText().toString().trim();
                 if(name.equals("")||email.equals("")||hobby.equals("")||hero.equals("")||age.equals("")){
                   Toast.makeText(getActivity(),"Vui long nhap thong tin",Toast.LENGTH_LONG).show();
                 }
                 else {
                     UpdateData(UPDATE_API);
+                  /*  UpdateData(id,name,email,hero,hobby,age);
+                    startActivity(new Intent(getActivity(), AccountFragment.class));*/
                 }
             }
         });
@@ -124,6 +118,62 @@ public class UpdateDialog extends DialogFragment {
         });
     }
 
+    public void GetDataFromEditText(){
+
+        name=etName.getText().toString().trim();
+        email=etEmail.getText().toString().trim();
+        age=etAge.getText().toString().trim();
+        hero=etHero.getText().toString().trim();
+        hobby=etHobby.getText().toString().trim();
+    }
+   /* public void UpdateData(final String ID, final String S_Name, final String S_email, final String S_hero,final String S_hobby,final String S_age){
+
+        class StudentRecordUpdateClass extends AsyncTask<String,Void,String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+
+            }
+
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+
+                super.onPostExecute(httpResponseMsg);
+
+
+                Toast.makeText(getActivity(),httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                hashMap.put("id",params[0]);
+
+                hashMap.put("name",params[1]);
+
+                hashMap.put("email",params[2]);
+
+                hashMap.put("hobby",params[3]);
+
+                hashMap.put("hero",params[4]);
+
+                hashMap.put("age",params[5]);
+
+
+                finalResult = httpParse.postRequest(hashMap, UPDATE_API);
+
+                return finalResult;
+            }
+        }
+
+        StudentRecordUpdateClass studentRecordUpdateClass = new StudentRecordUpdateClass();
+
+        studentRecordUpdateClass.execute(ID,S_Name,S_email,S_hero,S_hobby,S_age);
+    }*/
+    //Volley
     public void UpdateData(String url){
         RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
         StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -131,7 +181,9 @@ public class UpdateDialog extends DialogFragment {
             public void onResponse(String response) {
                 if (response.trim().equals("success")) {
                     Toast.makeText(getActivity(),"Cap Nhat thanh cong",Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getActivity(), AccountFragment.class));
+
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+
 
                 }else {
                     Toast.makeText(getActivity(),"Loi cap nhat",Toast.LENGTH_LONG).show();
@@ -153,7 +205,7 @@ public class UpdateDialog extends DialogFragment {
                 Map<String,String> params=new HashMap<>();
                 params.put("id",id);
                 params.put("name",etName.getText().toString().trim());
-                params.put("emai",etEmail.getText().toString().trim());
+                params.put("email",etEmail.getText().toString().trim());
                 params.put("age",etAge.getText().toString().trim());
                 params.put("hero",etHero.getText().toString().trim());
                 params.put("hobby",etHobby.getText().toString().trim());
@@ -164,6 +216,5 @@ public class UpdateDialog extends DialogFragment {
         requestQueue.add(stringRequest);
 
     }
-
 }
 

@@ -5,11 +5,111 @@
     tools:context="com.example.mypc.musicwithgame.Fragment.FavoritesFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:textColor="#ffff"/>
+ <LinearLayout
+     android:layout_marginTop="60dp"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical">
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="60dp"
+         android:text="Lựa Chọn Các Ngữ Cảnh Phù hợp"
+         android:textSize="20dp"
+         android:textAlignment="center"/>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:orientation="horizontal">
+         <TextView
+             android:layout_width="150dp"
+             android:layout_height="50dp"
+             android:text="Bạn Đang chơi ở đâu ?"
+             android:layout_marginLeft="10dp"
+             />
 
+         <Spinner
+             android:id="@+id/spnĐiaDiem"
+             android:layout_width="match_parent"
+             android:layout_height="50dp" />
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:orientation="horizontal">
+         <TextView
+             android:layout_marginLeft="10dp"
+             android:layout_width="150dp"
+             android:layout_height="50dp"
+             android:text="Bạn Đang Choi Cung Ai ?"
+             />
+         <Spinner
+             android:id="@+id/spnChoiCungAi"
+             android:layout_width="match_parent"
+             android:layout_height="50dp" />
+     </LinearLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:orientation="horizontal">
+         <TextView
+             android:layout_width="150dp"
+             android:layout_height="50dp"
+             android:text="Tam Trạng Của Bạn ?"
+             android:layout_marginLeft="10dp"
+
+           />
+         <Spinner
+             android:id="@+id/spnTamTrang"
+             android:layout_width="match_parent"
+             android:layout_height="50dp" />
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:orientation="horizontal">
+         <TextView
+             android:layout_marginLeft="10dp"
+             android:layout_width="150dp"
+             android:layout_height="50dp"
+             android:text="Thời Gian Chơi ?"
+             />
+         <Spinner
+             android:id="@+id/spnThoiGian"
+             android:layout_width="match_parent"
+             android:layout_height="50dp" />
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:orientation="horizontal">
+         <TextView
+             android:layout_width="150dp"
+             android:layout_height="50dp"
+             android:layout_marginLeft="10dp"
+             android:text="Nhân Vật Đang Chơi ?"
+             />
+
+         <Spinner
+             android:id="@+id/spnNhanVat"
+             android:layout_width="match_parent"
+             android:layout_height="50dp" />
+     </LinearLayout>
+     <Button
+         android:id="@+id/bntSubmit"
+         android:layout_gravity="center"
+         android:text="Submit"
+         android:onClick="Submit"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/tve"
+         android:text="in a"
+         android:textSize="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+
+ </LinearLayout>
 </FrameLayout>

@@ -38,6 +38,10 @@
             android:name=".View.Music_Player_Activity"
             android:label="@string/title_activity_music__player_"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".View.Rate_Activity"
+            android:label="@string/title_activity_rate_"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
