@@ -11,10 +11,12 @@
      android:layout_marginTop="60dp"
      android:orientation="vertical">
      <TextView
+         android:layout_marginTop="110dp"
          android:id="@+id/tvUserInfo"
          android:layout_width="match_parent"
          android:text="USER INFO"
-         android:textColor="@color/bb_darkBackgroundColor"
+         android:textSize="20dp"
+         android:textColor="#ffff"
          android:textAlignment="center"
          android:layout_height="40dp" />
 
@@ -23,11 +25,13 @@
          android:orientation="horizontal"
          android:layout_height="40dp">
          <TextView
-             android:text="Name :"
-             android:layout_marginLeft="5dp"
+             android:textColor="#ffff"
+             android:text="Name"
+             android:layout_marginLeft="15dp"
              android:layout_width="100dp"
              android:layout_height="40dp" />
          <TextView
+             android:textColor="#ffff"
              android:id="@+id/tvName"
              android:layout_width="match_parent"
              android:layout_height="40dp" />
@@ -37,12 +41,14 @@
          android:orientation="horizontal"
          android:layout_height="40dp">
          <TextView
-             android:text="Email :"
-             android:layout_marginLeft="5dp"
+             android:textColor="#ffff"
+             android:text="Email"
+             android:layout_marginLeft="15dp"
              android:layout_width="100dp"
              android:layout_height="40dp" />
          <TextView
-         android:id="@+id/tvEmail"
+             android:textColor="#ffff"
+             android:id="@+id/tvEmail"
          android:layout_width="match_parent"
          android:layout_height="40dp" />
      </LinearLayout>
@@ -51,11 +57,13 @@
          android:orientation="horizontal"
          android:layout_height="40dp">
          <TextView
-             android:text="Hobby :"
-             android:layout_marginLeft="5dp"
+             android:text="Hobby"
+             android:textColor="#ffff"
+             android:layout_marginLeft="15dp"
              android:layout_width="100dp"
              android:layout_height="40dp" />
          <TextView
+             android:textColor="#ffff"
              android:id="@+id/tvHobby"
              android:layout_width="match_parent"
              android:layout_height="40dp" />
@@ -65,11 +73,13 @@
          android:orientation="horizontal"
          android:layout_height="40dp">
          <TextView
-             android:text="Hero :"
-             android:layout_marginLeft="5dp"
+             android:textColor="#ffff"
+             android:text="Hero"
+             android:layout_marginLeft="15dp"
              android:layout_width="100dp"
              android:layout_height="40dp" />
          <TextView
+             android:textColor="#ffff"
              android:id="@+id/tvHero"
              android:layout_width="match_parent"
              android:layout_height="40dp" />
@@ -79,11 +89,13 @@
          android:orientation="horizontal"
          android:layout_height="40dp">
          <TextView
-             android:text="Age :"
-             android:layout_marginLeft="5dp"
+             android:textColor="#ffff"
+             android:text="Age"
+             android:layout_marginLeft="15dp"
              android:layout_width="100dp"
              android:layout_height="40dp" />
          <TextView
+             android:textColor="#ffff"
              android:id="@+id/tvAge"
              android:layout_width="match_parent"
              android:layout_height="40dp" />
@@ -93,6 +105,7 @@
          android:id="@+id/btnEdit"
          android:layout_gravity="center"
          android:onClick="Edit"
+         android:background="@drawable/bg_edit_text"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:text="Edit" />
@@ -100,6 +113,8 @@
          android:id="@+id/btnOut"
          android:layout_gravity="center"
          android:onClick="onClick"
+         android:layout_marginTop="10dp"
+         android:background="@drawable/button_key"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:text="LogOut" />

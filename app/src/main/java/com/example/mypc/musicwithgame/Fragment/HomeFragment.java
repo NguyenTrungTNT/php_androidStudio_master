@@ -30,14 +30,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
+
 public class HomeFragment extends Fragment {
 
     public RecyclerView recyclerView;
@@ -75,7 +69,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-        //Event
+        //Khi click vào item row
 
         adapter.setOnItemClickedListener(new CustomAdapter.OnItemClickedListener() {
             @Override
@@ -116,7 +110,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(MainActivity.this, description, Toast.LENGTH_SHORT).show();
             }*/
         });
-
+/*
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -126,7 +120,7 @@ public class HomeFragment extends Fragment {
                 }
 
             }
-        });
+        });*/
 
         return v;
 

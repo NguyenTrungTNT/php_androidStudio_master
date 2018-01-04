@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.mypc.musicwithgame.NotificationGenerator;
 import com.example.mypc.musicwithgame.R;
 import com.example.mypc.musicwithgame.Service.Music_Player_Service;
 
@@ -134,7 +135,7 @@ public class Music_Player_Activity extends AppCompatActivity {
         intent.putExtra("mp3",song_res);
         this.startService(intent);
 
-
+        NotificationGenerator.customBigNotification(getApplicationContext());
 
 
         if(mPlayer==null)

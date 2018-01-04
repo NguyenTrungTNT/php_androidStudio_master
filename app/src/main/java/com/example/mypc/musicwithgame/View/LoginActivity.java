@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mypc.musicwithgame.Fragment.AccountFragment;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText name, password;
     String Name, Password;
     Context ctx=this;
+    ImageView imageView;
     String NAME=null, PASSWORD=null, EMAIL=null,AGE=null,HOBBY=null,HERO=null,ID=null;
 
     @Override
@@ -34,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         name = (EditText) findViewById(R.id.main_name);
         password = (EditText) findViewById(R.id.main_password);
+
     }
 
     public void main_register(View v){

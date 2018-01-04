@@ -2,6 +2,7 @@ package com.example.mypc.musicwithgame.Adpater;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -53,7 +54,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 Intent intent= new Intent(this, MusicList.class);
 */
 
-                holder.line.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
+              /*  holder.line.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));*/
                 if (onItemClickedListener != null) {
                     onItemClickedListener.onItemClick(holder.description.getText().toString(),position);
 /*

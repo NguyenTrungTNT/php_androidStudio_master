@@ -35,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
         hobby=(EditText)findViewById(R.id.register_hobby);
         age=(EditText)findViewById(R.id.register_age);
         hero=(EditText)findViewById(R.id.register_hero);
+
+
     }
 
     public void register_register(View v){
@@ -44,9 +46,14 @@ public class RegisterActivity extends AppCompatActivity {
         Hero = hero.getText().toString();
         Hobby = hobby.getText().toString();
         Age = age.getText().toString();
-        BackGround b = new BackGround();
-        b.execute(Name, Password, Email,Hero,Hobby,Age);
-        startActivity(new Intent(this,LoginActivity.class));
+        if(name.getText().toString().equals("")&&password.getText().toString().equals("")&&age.getText().toString().equals("")&&email.getText().toString().equals("")&&hero.getText().toString().equals("")&&hobby.getText().toString().equals("")){
+            Toast.makeText(this,"Bạn phải nhập đủ thông tin",Toast.LENGTH_LONG).show();
+        }
+        else {
+            BackGround b = new BackGround();
+            b.execute(Name, Password, Email, Hero, Hobby, Age);
+            startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 
     class BackGround extends AsyncTask<String, String, String> {

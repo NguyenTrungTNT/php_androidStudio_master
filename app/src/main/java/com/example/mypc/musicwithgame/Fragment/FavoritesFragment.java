@@ -1,7 +1,6 @@
 package com.example.mypc.musicwithgame.Fragment;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,52 +9,30 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.mypc.musicwithgame.Model.CARS;
-import com.example.mypc.musicwithgame.Model.MyData;
 import com.example.mypc.musicwithgame.R;
-import com.example.mypc.musicwithgame.View.LoginActivity;
-import com.example.mypc.musicwithgame.View.MainActivity;
 import com.example.mypc.musicwithgame.View.Rate_Activity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 
 public class FavoritesFragment extends Fragment {
 
+
+    ListView listview;
+
     static String nhanVat,tamTrang,thoiGian;
     static int Ma_BAI_HAT,BAN_NHAC,USER,RATE,NGU_CANH_SERVER;
     static int NGU_CANH;
-    static String CARS="http://musicismylife.atspace.cc/CARS.php";
+    static String CARS_res="http://musicismylife.atspace.cc/demoCars.php";
     static Spinner spnDiaDiem,spnTamTrang,spnChoiCungAi,spnThoiGian,spnNhanVat;
     static ArrayList<CARS> carsArrayList;
     static Button submit;
-    static TextView tv;
     static String a="abc";
 
     CARS cars;
@@ -81,17 +58,20 @@ public class FavoritesFragment extends Fragment {
         spnThoiGian=(Spinner)v.findViewById(R.id.spnThoiGian);
         spnNhanVat=(Spinner)v.findViewById(R.id.spnNhanVat);
         submit=(Button)v.findViewById(R.id.bntSubmit) ;
-        tv=(TextView)v.findViewById(R.id.tve) ;
-
-        sentDataToServer sent=new sentDataToServer();
-        sent.execute(NGU_CANH);
 
 
-       for (int i=0;i<carsArrayList.size();i++){
-         cars=carsArrayList.get(2);
-         //int a=cars.getUser();
+   /*     sentDataToServer sent=new sentDataToServer();
+        String nc=String.valueOf(NGU_CANH);
+        sent.execute(nc);*/
 
-       }
+    /*    listview = (ListView)v.findViewById(R.id.lv);
+
+        listview.setAdapter(new Adapter(getActivity(), carsArrayList));*/
+
+
+        //HashMap<String, Integer> user=listMap.get(1);
+
+
 
 
         Spiner_Manager();
@@ -101,9 +81,13 @@ public class FavoritesFragment extends Fragment {
             public void onClick(View view) {
                 getText();
                 int nc=truongHopNguCanh();
+                String ngu_canh=String.valueOf(nc);
+                Intent intent=new Intent(getActivity(),Rate_Activity.class);
+                intent.putExtra("nguCanh",ngu_canh);
+                startActivity(intent);
 
 
-                Toast.makeText(getActivity(),NGU_CANH+"user:"+USER+"Bản nhạc:"+BAN_NHAC+"rate:"+RATE,Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),ngu_canh+"user:"+USER+"Bản nhạc:"+BAN_NHAC+"rate:"+RATE,Toast.LENGTH_LONG).show();
 
 
 
@@ -317,73 +301,9 @@ public class FavoritesFragment extends Fragment {
 
 
 
-    class sentDataToServer extends AsyncTask<Integer, String, String> {
-
-        @Override
-        protected String doInBackground(Integer... params) {
-            int nguCanh = params[0];
-            String data="";
-            int tmp;
-
-            try {
-                URL url = new URL("http://musicismylife.atspace.cc/CARS.php");
-                String urlParams = "nguCanh="+nguCanh;
-
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setDoOutput(true);
-                OutputStream os = httpURLConnection.getOutputStream();
-                os.write(urlParams.getBytes());
-                os.flush();
-                os.close();
-
-                InputStream is = httpURLConnection.getInputStream();
-                while((tmp=is.read())!=-1){
-                    data+= (char)tmp;
-                }
-
-                is.close();
-                httpURLConnection.disconnect();
-
-                return data;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                return "Exception: "+e.getMessage();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "Exception: "+e.getMessage();
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            String err=null;
-            try {
-                JSONObject root = new JSONObject(s);
-                JSONArray jsonArray = root.getJSONArray("cars");
-                for (int i=0;i<jsonArray.length();i++) {
-
-                    JSONObject cars=jsonArray.getJSONObject(i);
-
-                    Ma_BAI_HAT = cars.getInt("maBanNhac");
-                    USER = cars.getInt("user");
-                    BAN_NHAC = cars.getInt("banNhac");
-                    NGU_CANH_SERVER = cars.getInt("nguCanh");
-                    RATE = cars.getInt("rate");
-                    carsArrayList.add(new CARS(USER,BAN_NHAC,RATE));
-
-                }
 
 
 
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-                err = "Exception: "+e.getMessage();
-            }
-
-
-        }
-    };
 
 
 
